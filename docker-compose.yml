@@ -1,0 +1,68 @@
+services:
+
+  # ─── Backends ───────────────────────────────────────────────────────────────
+
+  spring-boot:
+    image: harbor.hadiubaidillah.com/wilayah/spring-boot:latest
+    build:
+      context: backend/spring-boot
+      dockerfile: Dockerfile
+    ports:
+      - "19080:8080"
+    env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  golang:
+    image: harbor.hadiubaidillah.com/wilayah/golang:latest
+    build:
+      context: backend/golang
+      dockerfile: Dockerfile
+    ports:
+      - "19081:8081"
+    env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  rust:
+    image: harbor.hadiubaidillah.com/wilayah/rust:latest
+    build:
+      context: backend/rust
+      dockerfile: Dockerfile
+    ports:
+      - "19082:8082"
+    env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # ─── Frontends ───────────────────────────────────────────────────────────────
+
+  react:
+    image: harbor.hadiubaidillah.com/wilayah/react:latest
+    build:
+      context: .
+      dockerfile: frontend/react/Dockerfile
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+
+  angular:
+    image: harbor.hadiubaidillah.com/wilayah/angular:latest
+    build:
+      context: .
+      dockerfile: frontend/angular/Dockerfile
+    ports:
+      - "4200:80"
+    restart: unless-stopped
+
+  vue:
+    image: harbor.hadiubaidillah.com/wilayah/vue:latest
+    build:
+      context: .
+      dockerfile: frontend/vue/Dockerfile
+    ports:
+      - "5174:80"
+    restart: unless-stopped

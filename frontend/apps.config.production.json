@@ -1,0 +1,12 @@
+{
+  "apps": [
+    { "id": "react",   "name": "React",   "url": "https://wilayah.hadiubaidillah.com" },
+    { "id": "angular", "name": "Angular", "url": "http://localhost:4200" },
+    { "id": "vue",     "name": "Vue",     "url": "http://localhost:5174" }
+  ],
+  "backends": [
+    { "id": "spring-boot", "name": "Spring Boot", "url": "https://wilayah.hadiubaidillah.com" },
+    { "id": "golang",      "name": "Go (Gin)",    "url": "https://wilayah.hadiubaidillah.com/golang" },
+    { "id": "rust",        "name": "Rust (Axum)", "url": "https://wilayah.hadiubaidillah.com/rust" }
+  ]
+}
