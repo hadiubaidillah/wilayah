@@ -36,13 +36,9 @@ server {
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-XSS-Protection "1; mode=block" always;
 
-    # React — frontend utama
+    # Redirect ke react subdomain
     location / {
-        proxy_pass http://localhost:5173;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        return 301 https://react.wilayah.hadiubaidillah.com$request_uri;
     }
 
     # Spring Boot API (default)

@@ -1,6 +1,6 @@
 {
   "apps": [
-    { "id": "react",   "name": "React",   "url": "https://wilayah.hadiubaidillah.com" },
+    { "id": "react",   "name": "React",   "url": "https://react.wilayah.hadiubaidillah.com" },
     { "id": "angular", "name": "Angular", "url": "https://angular.wilayah.hadiubaidillah.com" },
     { "id": "vue",     "name": "Vue",     "url": "https://vue.wilayah.hadiubaidillah.com" }
   ],
