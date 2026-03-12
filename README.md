@@ -13,13 +13,13 @@ API dan antarmuka web untuk data Kode dan Wilayah Administrasi Pemerintahan Indo
 
 ## Screenshot
 
-### React
+### Spring Boot + React
 [![React](.github/screenshots/react.png)](.github/screenshots/react.png)
 
-### Angular
+### Go + Angular
 [![Angular](.github/screenshots/angular.png)](.github/screenshots/angular.png)
 
-### Vue
+### Rust + Vue
 [![Vue](.github/screenshots/vue.png)](.github/screenshots/vue.png)
 
 ---
