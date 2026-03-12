@@ -30,7 +30,7 @@ API dan antarmuka web untuk data Kode dan Wilayah Administrasi Pemerintahan Indo
 wilayah/
 ├── database/                      # Database SQL (sumber: cahyadsn/wilayah)
 ├── backend/
-│   ├── spring-boot/           # Java — Spring Boot 3 (port 8080)
+│   ├── spring-boot/           # Java — Spring Boot 4 (port 8080)
 │   ├── golang/                # Go — Gin (port 8081)
 │   └── rust/                  # Rust — Axum (port 8082)
 └── frontend/
