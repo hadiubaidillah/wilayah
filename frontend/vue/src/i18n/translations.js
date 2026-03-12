@@ -1,0 +1,45 @@
+export const translations = {
+  id: {
+    appTitle: 'Data Wilayah Administrasi Indonesia',
+    appSubtitle: 'Sesuai Kepmendagri No 300.2.2-2138 Tahun 2025',
+    selectProvince: 'Provinsi',
+    selectCity: 'Kota / Kabupaten',
+    selectDistrict: 'Kecamatan',
+    selectVillage: 'Desa / Kelurahan',
+    selectPlaceholder: (label) => `-- Pilih ${label} --`,
+    loading: 'Memuat data...',
+    errorProvince: 'Gagal memuat data provinsi',
+    errorRegion: 'Gagal memuat data wilayah',
+    levelLabel: { 2: 'Provinsi', 5: 'Kota/Kabupaten', 8: 'Kecamatan', 13: 'Desa/Kelurahan' },
+    infoCode: 'Kode',
+    infoArea: 'Luas',
+    infoAreaUnit: 'km²',
+    infoPopulation: 'Penduduk',
+    infoPopulationUnit: 'jiwa',
+    infoCoord: 'Koordinat',
+  },
+  en: {
+    appTitle: 'Indonesian Administrative Region Data',
+    appSubtitle: 'Based on Kepmendagri No 300.2.2-2138 Year 2025',
+    selectProvince: 'Province',
+    selectCity: 'City / Regency',
+    selectDistrict: 'District',
+    selectVillage: 'Village / Sub-district',
+    selectPlaceholder: (label) => `-- Select ${label} --`,
+    loading: 'Loading data...',
+    errorProvince: 'Failed to load province data',
+    errorRegion: 'Failed to load region data',
+    levelLabel: { 2: 'Province', 5: 'City/Regency', 8: 'District', 13: 'Village' },
+    infoCode: 'Code',
+    infoArea: 'Area',
+    infoAreaUnit: 'km²',
+    infoPopulation: 'Population',
+    infoPopulationUnit: 'people',
+    infoCoord: 'Coordinates',
+  },
+}
+
+export function detectLang() {
+  const lang = navigator.language || navigator.languages?.[0] || 'en'
+  return lang.toLowerCase().startsWith('id') ? 'id' : 'en'
+}

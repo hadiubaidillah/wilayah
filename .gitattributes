@@ -1,0 +1,46 @@
+# Normalisasi line ending
+* text=auto eol=lf
+
+# Go
+*.go text eol=lf
+go.sum text eol=lf -diff
+
+# Rust
+*.rs text eol=lf
+Cargo.lock text eol=lf -diff
+
+# Java
+*.java text eol=lf
+*.xml text eol=lf
+*.properties text eol=lf
+
+# Web
+*.ts text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.tsx text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+
+# SQL
+*.sql text eol=lf
+
+# GitHub Linguist — bahasa yang ditampilkan di repo
+*.go linguist-detectable=true
+*.rs linguist-detectable=true
+*.java linguist-detectable=true
+*.ts linguist-detectable=true
+*.sql linguist-detectable=true
+*.js linguist-detectable=false
+*.html linguist-detectable=false
+*.xml linguist-detectable=false
+*.css linguist-detectable=false
+
+# Binary
+*.ico binary
+*.png binary
+*.jpg binary
+*.jar binary
+*.war binary
+*.zip binary

@@ -1,0 +1,40 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Claude Code
+.claude/
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+backend/spring-boot/src/main/resources/application.properties
+
+# Go
+backend/golang/wilayah-api
+
+# Rust
+backend/rust/target/
+
+# Spring Boot (Maven)
+backend/spring-boot/target/
+backend/spring-boot/*.jar
+backend/spring-boot/*.war
+
+# Node.js — React / Vue / Angular
+frontend/angular/.angular/
+frontend/react/node_modules/
+frontend/react/dist/
+frontend/react/package-lock.json
+frontend/vue/node_modules/
+frontend/vue/dist/
+frontend/vue/package-lock.json
+frontend/angular/node_modules/
+frontend/angular/dist/
+frontend/angular/package-lock.json

@@ -1,0 +1,50 @@
+@import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  color: #333;
+}
+
+/* App switcher */
+.app-switcher {
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 6px; color: white; font-size: 0.8rem; font-weight: 600;
+  padding: 0.3rem 0.5rem; cursor: pointer; flex-shrink: 0;
+}
+.app-switcher option { color: #111; background: white; }
+.app-switcher:focus { outline: none; }
+
+.backend-switcher {
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 6px; color: white; font-size: 0.8rem; font-weight: 600;
+  padding: 0.3rem 0.5rem; cursor: pointer; flex-shrink: 0;
+}
+.backend-switcher option { color: #111; background: white; }
+.backend-switcher:focus { outline: none; }
+
+/* Select group (shared across components) */
+.select-group { display: flex; flex-direction: column; gap: 0.25rem; }
+.select-group label { font-size: 0.75rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
+.select-group select { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem; color: #111827; background: #f9fafb; cursor: pointer; }
+.select-group select:focus { outline: none; border-color: #ea580c; box-shadow: 0 0 0 3px rgba(234,88,12,0.1); }
+
+/* Wilayah info */
+.wilayah-info { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 0.875rem; }
+.wilayah-info h3 { font-size: 0.9rem; font-weight: 700; color: #c2410c; margin-bottom: 0.5rem; }
+.wilayah-info table { width: 100%; font-size: 0.8rem; border-collapse: collapse; }
+.wilayah-info td { padding: 0.2rem 0; color: #374151; }
+.wilayah-info td:first-child { font-weight: 600; color: #ea580c; width: 40%; }
+
+/* GitHub link */
+.github-link { display: flex; align-items: center; color: white; opacity: 0.8; transition: opacity 0.15s; flex-shrink: 0; }
+.github-link:hover { opacity: 1; }
+
+/* Map */
+.map-container { width: 100%; height: 100%; min-height: 500px; }
+
+@media (max-width: 768px) {
+  .map-container { min-height: 350px; }
+}

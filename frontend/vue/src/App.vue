@@ -1,0 +1,154 @@
+<template>
+  <div class="app">
+    <header class="app-header">
+      <div class="app-header-content">
+        <div>
+          <h1>{{ t.appTitle }}</h1>
+          <p>{{ t.appSubtitle }}</p>
+        </div>
+        <div class="header-controls">
+          <AppSwitcher />
+          <BackendSwitcher />
+          <button class="lang-switch" @click="toggleLang">
+            <span :class="{ 'lang-active': lang === 'id' }">ID</span>
+            <span class="lang-divider">|</span>
+            <span :class="{ 'lang-active': lang === 'en' }">EN</span>
+          </button>
+          <a class="github-link" href="https://github.com/hadiubaidillah/wilayah" target="_blank" rel="noreferrer" title="GitHub">
+            <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <div class="sidebar">
+        <div class="select-container">
+          <WilayahSelect
+            :label="t.selectProvince"
+            :placeholder="t.selectPlaceholder(t.selectProvince)"
+            :options="provinsi"
+            v-model="selectedProv"
+            @update:modelValue="(v) => v && handleSelect(v, 'prov')"
+          />
+          <WilayahSelect
+            v-if="kotaList.length"
+            :label="t.selectCity"
+            :placeholder="t.selectPlaceholder(t.selectCity)"
+            :options="kotaList"
+            v-model="selectedKota"
+            @update:modelValue="(v) => v && handleSelect(v, 'kota')"
+          />
+          <WilayahSelect
+            v-if="kecList.length"
+            :label="t.selectDistrict"
+            :placeholder="t.selectPlaceholder(t.selectDistrict)"
+            :options="kecList"
+            v-model="selectedKec"
+            @update:modelValue="(v) => v && handleSelect(v, 'kec')"
+          />
+          <WilayahSelect
+            v-if="desaList.length"
+            :label="t.selectVillage"
+            :placeholder="t.selectPlaceholder(t.selectVillage)"
+            :options="desaList"
+            v-model="selectedDesa"
+            @update:modelValue="(v) => v && handleSelect(v, 'desa')"
+          />
+        </div>
+
+        <div class="loading" v-if="loading">{{ t.loading }}</div>
+        <div class="error" v-if="error">{{ error }}</div>
+        <WilayahInfo v-if="wilayahData" :data="wilayahData" :t="t" />
+      </div>
+
+      <div class="map-wrapper">
+        <WilayahMap :wilayah="wilayahData" />
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <a href="https://github.com/hadiubaidillah/wilayah" target="_blank" rel="noreferrer">
+        github.com/hadiubaidillah/wilayah
+      </a>
+    </footer>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+import WilayahSelect from './components/WilayahSelect.vue'
+import WilayahInfo from './components/WilayahInfo.vue'
+import WilayahMap from './components/WilayahMap.vue'
+import AppSwitcher from './components/AppSwitcher.vue'
+import BackendSwitcher from './components/BackendSwitcher.vue'
+import { getProvinsi, getWilayah } from './api/wilayah'
+import { translations, detectLang } from './i18n/translations'
+
+const lang = ref(detectLang())
+const t = computed(() => translations[lang.value])
+const toggleLang = () => { lang.value = lang.value === 'id' ? 'en' : 'id' }
+
+const provinsi = ref([])
+const kotaList = ref([])
+const kecList = ref([])
+const desaList = ref([])
+
+const selectedProv = ref('')
+const selectedKota = ref('')
+const selectedKec = ref('')
+const selectedDesa = ref('')
+
+const wilayahData = ref(null)
+const loading = ref(false)
+const error = ref(null)
+
+onMounted(async () => {
+  try {
+    const res = await getProvinsi()
+    provinsi.value = res.data
+  } catch {
+    error.value = t.value.errorProvince
+  }
+})
+
+async function handleSelect(kode, level) {
+  error.value = null
+  loading.value = true
+  try {
+    const res = await getWilayah(kode)
+    const { data, children } = res.data
+    wilayahData.value = data
+
+    if (level === 'prov') {
+      selectedProv.value = kode
+      kotaList.value = children || []
+      selectedKota.value = ''
+      kecList.value = []
+      selectedKec.value = ''
+      desaList.value = []
+      selectedDesa.value = ''
+    } else if (level === 'kota') {
+      selectedKota.value = kode
+      kecList.value = children || []
+      selectedKec.value = ''
+      desaList.value = []
+      selectedDesa.value = ''
+    } else if (level === 'kec') {
+      selectedKec.value = kode
+      desaList.value = children || []
+      selectedDesa.value = ''
+    } else if (level === 'desa') {
+      selectedDesa.value = kode
+    }
+  } catch {
+    error.value = t.value.errorRegion
+  } finally {
+    loading.value = false
+  }
+}
+</script>
+
+<style src="./app.css" />
