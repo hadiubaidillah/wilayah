@@ -24,12 +24,14 @@ async fn main() {
         .await
         .expect("Failed to connect to MySQL");
 
+    let allowed_origins: Vec<axum::http::HeaderValue> = std::env::var("ALLOWED_ORIGINS")
+        .unwrap_or_else(|_| "http://localhost:5173,http://localhost:5174,http://localhost:4200".to_string())
+        .split(',')
+        .filter_map(|o| o.trim().parse().ok())
+        .collect();
+
     let cors = CorsLayer::new()
-        .allow_origin([
-            "http://localhost:5173".parse().unwrap(),
-            "http://localhost:5174".parse().unwrap(),
-            "http://localhost:4200".parse().unwrap(),
-        ])
+        .allow_origin(allowed_origins)
         .allow_methods(Any)
         .allow_headers(Any);
 
