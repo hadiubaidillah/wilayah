@@ -1,4 +1,4 @@
-# Wilayah API
+# WILAYAH INDONESIA 🇮🇩
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/hadiubaidillah/wilayah.svg)](https://github.com/hadiubaidillah/wilayah/issues)
