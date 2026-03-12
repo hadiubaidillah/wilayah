@@ -14,7 +14,7 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
-backend/spring-boot/src/main/resources/application.properties
+# backend/spring-boot/src/main/resources/application.properties
 
 # Go
 backend/golang/wilayah-api
