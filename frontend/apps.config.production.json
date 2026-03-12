@@ -1,8 +1,8 @@
 {
   "apps": [
     { "id": "react",   "name": "React",   "url": "https://wilayah.hadiubaidillah.com" },
-    { "id": "angular", "name": "Angular", "url": "http://localhost:4200" },
-    { "id": "vue",     "name": "Vue",     "url": "http://localhost:5174" }
+    { "id": "angular", "name": "Angular", "url": "https://angular.wilayah.hadiubaidillah.com" },
+    { "id": "vue",     "name": "Vue",     "url": "https://vue.wilayah.hadiubaidillah.com" }
   ],
   "backends": [
     { "id": "spring-boot", "name": "Spring Boot", "url": "https://wilayah.hadiubaidillah.com" },
