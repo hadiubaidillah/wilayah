@@ -20,7 +20,10 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker compose build'
+                sh '''
+                    cp $DEPLOY_DIR/.env .
+                    docker compose build
+                '''
             }
         }
 
