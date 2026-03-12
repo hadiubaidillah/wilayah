@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     environment {
-        HARBOR    = 'harbor.hadiubaidillah.com/wilayah'
-        DEPLOY_DIR = '/opt/home/wilayah/source/wilayah'
+        HARBOR      = 'harbor.hadiubaidillah.com/wilayah'
+        DEPLOY_DIR  = '/opt/home/wilayah/source/wilayah'
+        HOME        = '/var/lib/jenkins'
+        DOCKER_CONFIG = '/var/lib/jenkins/.docker'
     }
 
     stages {
